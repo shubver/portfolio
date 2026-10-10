@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shubham Verma · Applied ML & GenAI Systems</title>
+  <meta name="description" content="Shubham Verma, Lead Data Scientist building production ML and GenAI platforms for industrial asset monitoring." />
+  <meta property="og:title" content="Shubham Verma · Applied ML & GenAI Systems" />
+  <meta property="og:description" content="Production AI for industrial machines: agent platforms, self-running ML lifecycles, evaluation-driven AutoML." />
+  <meta name="theme-color" content="#f2f1ee" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23101014'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='900' font-size='18' fill='%23f2f1ee' text-anchor='middle'%3ESV%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Geist+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Apply the saved theme before first paint to avoid a flash.
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ───────────────────────── NAV ───────────────────────── -->
+  <nav id="site-nav" class="nav" aria-label="Primary">
+    <div class="nav-left">
+      <a class="nav-logo" href="#top" aria-label="Shubham Verma, home">
+        <span class="logo-mark">SV</span>
+      </a>
+      <ul class="nav-links">
+        <li><a class="hud-link" href="#numbers"><span>Impact</span></a></li>
+        <li><a class="hud-link" href="#work"><span>Work</span></a></li>
+        <li><a class="hud-link" href="#arc"><span>Experience</span></a></li>
+        <li><a class="hud-link" href="#principles"><span>How I work</span></a></li>
+        <li><a class="hud-link" href="#skills"><span>Skills</span></a></li>
+        <li><a class="hud-link" href="#blog"><span>Blog</span></a></li>
+        <li class="nav-sep"><a class="hud-link" href="#contact"><span>Contact</span></a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <a class="nav-icon" href="https://github.com/shubver" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      </a>
+      <a class="nav-icon" href="https://linkedin.com/in/shubver" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.83v1.5h.06c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13v5.43h-4v-4.82c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.9h-4v-11Z"/></svg>
+      </a>
+      <button type="button" class="nav-icon theme-toggle" aria-label="Toggle colour theme" title="Toggle theme">
+        <svg class="i-moon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M21 14.5A8.5 8.5 0 0 1 9.5 3a8.5 8.5 0 1 0 11.5 11.5Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 1.5v2.5M12 20v2.5M1.5 12H4M20 12h2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></g></svg>
+      </button>
+      <a class="btn btn-invert nav-cta" href="assets/Shubham_Verma_Resume_2026.pdf" target="_blank" rel="noopener">Résumé</a>
+      <button type="button" class="nav-icon nav-burger" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <svg class="i-open" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path stroke="currentColor" stroke-width="1.6" d="M3 7h18M3 12h18M3 17h18"/></svg>
+        <svg class="i-close" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path stroke="currentColor" stroke-width="1.6" d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <div id="mobile-nav" class="mobile-nav" hidden>
+      <a href="#numbers">Impact</a>
+      <a href="#work">Work</a>
+      <a href="#arc">Experience</a>
+      <a href="#principles">How I work</a>
+      <a href="#skills">Skills</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+      <a href="assets/Shubham_Verma_Resume_2026.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- ───────────────────────── HERO ───────────────────────── -->
+    <section id="top" class="hero">
+      <canvas class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-inner">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="wordmark-wrap">
+          <div class="wordmark-blur" aria-hidden="true"></div>
+          <div class="wordmark" role="img" aria-label="SHUBHAM">
+            <span>S</span><span>H</span><span>U</span><span>B</span><span>H</span><span>A</span><span>M</span>
+          </div>
+        </div>
+
+        <div class="audience" role="radiogroup" aria-labelledby="audience-label" data-reveal>
+          <span class="hud-label audience-label" id="audience-label">Viewing as</span>
+          <div class="audience-options">
+            <button type="button" role="radio" aria-checked="true" data-aud="recruiter">Recruiter</button>
+            <button type="button" role="radio" aria-checked="false" data-aud="developer">Developer</button>
+            <button type="button" role="radio" aria-checked="false" data-aud="client">Client</button>
+            <button type="button" role="radio" aria-checked="false" data-aud="visitor">Visitor</button>
+          </div>
+        </div>
+
+        <div class="hero-copy" aria-live="polite">
+          <h1 class="hero-title" data-reveal>Lead Data Scientist who builds production AI <em>end to end.</em></h1>
+          <p class="hero-bio" data-reveal>Six years of building AI for industrial asset monitoring. I designed and led the platforms that train, evaluate, deploy and retire thousands of equipment-health models automatically. In 2026 I built the company's agent platform single-handedly and shipped 13 LLM agents in five weeks.</p>
+          <div class="hero-ctas" data-reveal>
+            <a class="btn btn-invert btn-lg" data-cta="primary" href="assets/Shubham_Verma_Resume_2026.pdf" target="_blank" rel="noopener">Download résumé</a>
+            <a class="btn btn-outline btn-lg" data-cta="secondary" href="https://linkedin.com/in/shubver" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>
+          </div>
+        </div>
+        <p class="hud-label hero-meta" data-reveal>New Delhi, India <i>·</i> Mechademy <i>·</i> Shipping production AI since 2020</p>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── MARQUEE ───────────────────────── -->
+    <div class="marquee" aria-hidden="true">
+      <ul class="marquee-track">
+        <li>GraphKit</li><li>LangGraph</li><li>Deep Agents</li><li>Temporal</li><li>Ray / KubeRay</li><li>MLflow</li><li>Dagster</li><li>LiteLLM</li><li>Langfuse</li><li>MCP</li><li>ONNX Runtime</li><li>XGBoost</li><li>LightGBM</li><li>PyTorch</li><li>SAM</li><li>Gemini</li><li>TimescaleDB</li><li>Iceberg on S3</li><li>Helm / EKS</li><li>Django</li><li>Next.js</li><li>Postgres</li>
+      </ul>
+      <ul class="marquee-track">
+        <li>GraphKit</li><li>LangGraph</li><li>Deep Agents</li><li>Temporal</li><li>Ray / KubeRay</li><li>MLflow</li><li>Dagster</li><li>LiteLLM</li><li>Langfuse</li><li>MCP</li><li>ONNX Runtime</li><li>XGBoost</li><li>LightGBM</li><li>PyTorch</li><li>SAM</li><li>Gemini</li><li>TimescaleDB</li><li>Iceberg on S3</li><li>Helm / EKS</li><li>Django</li><li>Next.js</li><li>Postgres</li>
+      </ul>
+    </div>
+
+    <!-- ───────────────────────── 01 NUMBERS ───────────────────────── -->
+    <section id="numbers" class="section">
+      <div class="frame">
+        <span class="tick tick-tl" aria-hidden="true"></span><span class="tick tick-tr" aria-hidden="true"></span>
+        <div class="eyebrow"><p class="hud-label"><span class="faint">01</span><span class="slash">/</span>Impact</p><p class="hud-label faint hide-sm">Measured in production</p></div>
+        <div class="section-head">
+          <h2 class="h2" data-reveal>Results I can <em>point to.</em></h2>
+          <p class="lede" data-reveal>Every figure below comes from a system I designed and shipped, and each one is backed by a design decision I can defend in detail.</p>
+        </div>
+        <div class="stats">
+          <div class="stat" data-reveal><p class="stat-v">13</p><p class="stat-k">LLM agents shipped in five weeks</p><p class="hud-label faint">Agent Lifecycle Loop</p></div>
+          <div class="stat" data-reveal><p class="stat-v">~$0.08</p><p class="stat-k">compute cost to create a model</p><p class="hud-label faint">ML Lifecycle Loop</p></div>
+          <div class="stat" data-reveal><p class="stat-v">30–50%</p><p class="stat-k">more accurate than generic AutoML</p><p class="hud-label faint">ML Lifecycle Loop</p></div>
+          <div class="stat" data-reveal><p class="stat-v">5×</p><p class="stat-k">faster privacy NER, at ~50 MB instead of 1 GB</p><p class="hud-label faint">Agent Lifecycle Loop</p></div>
+          <div class="stat" data-reveal><p class="stat-v">3,400+</p><p class="stat-k">offline tests guarding the agent platform</p><p class="hud-label faint">Agent Lifecycle Loop</p></div>
+          <div class="stat" data-reveal><p class="stat-v">64</p><p class="stat-k">architecture decision records</p><p class="hud-label faint">Agent Lifecycle Loop</p></div>
+          <div class="stat" data-reveal><p class="stat-v">Hours</p><p class="stat-k">model turnaround, down from weeks</p><p class="hud-label faint">ML Lifecycle Loop</p></div>
+          <div class="stat" data-reveal><p class="stat-v">8</p><p class="stat-k">data scientists &amp; ML engineers led</p><p class="hud-label faint">Data Science Team Lead</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── 02 WORK ───────────────────────── -->
+    <section id="work" class="section">
+      <div class="frame">
+        <span class="tick tick-tl" aria-hidden="true"></span><span class="tick tick-tr" aria-hidden="true"></span>
+        <div class="eyebrow"><p class="hud-label"><span class="faint">02</span><span class="slash">/</span>Work</p><p class="hud-label faint hide-sm">Open any system for the full case study</p></div>
+        <div class="section-head">
+          <h2 class="h2" data-reveal>Platforms that <em>run themselves,</em> and prove they work.</h2>
+          <p class="lede" data-reveal>Four systems I designed and led, spanning a fleet of LLM agents, a self-running ML lifecycle, AutoML gated by evaluation, and computer vision on scanned engineering data.</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card" data-project="agents" data-reveal style="--app:var(--app-blue);--app-ink:var(--app-blue-ink)">
+            <div class="card-bar"><p class="hud-label">GenAI platform</p><p class="hud-label faint">01</p></div>
+            <div class="card-visual"><svg class="motif" data-motif="agents" viewBox="0 0 400 225" aria-hidden="true"></svg><span class="card-badge hud-label">2026</span></div>
+            <div class="card-body">
+              <h3 class="h3">Agent Lifecycle Loop</h3>
+              <p class="muted">A platform for a fleet of LLM agents serving industrial operators, built on GraphKit, our in-house agent framework. Engineers design the flow; durability, tenancy, privacy and cost come from the platform.</p>
+              <ul class="chips"><li>GraphKit</li><li>LangGraph</li><li>Deep Agents</li><li>Temporal</li><li>MCP</li></ul>
+              <button type="button" class="card-open" aria-haspopup="dialog">Read case study <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="work-card" data-project="mlloop" data-reveal style="--app:var(--app-teal);--app-ink:var(--app-teal-ink)">
+            <div class="card-bar"><p class="hud-label">MLOps platform</p><p class="hud-label faint">02</p></div>
+            <div class="card-visual"><svg class="motif" data-motif="mlloop" viewBox="0 0 400 225" aria-hidden="true"></svg></div>
+            <div class="card-body">
+              <h3 class="h3">ML Lifecycle Loop</h3>
+              <p class="muted">A self-running platform that creates, validates, deploys, monitors and retrains a fleet of industrial time-series models.</p>
+              <ul class="chips"><li>Ray</li><li>Dagster</li><li>MLflow</li><li>TimescaleDB</li><li>Iceberg</li></ul>
+              <button type="button" class="card-open" aria-haspopup="dialog">Read case study <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="work-card" data-project="automl" data-reveal style="--app:var(--app-violet);--app-ink:var(--app-violet-ink)">
+            <div class="card-bar"><p class="hud-label">Evaluation</p><p class="hud-label faint">03</p></div>
+            <div class="card-visual"><svg class="motif" data-motif="automl" viewBox="0 0 400 225" aria-hidden="true"></svg></div>
+            <div class="card-body">
+              <h3 class="h3">Evaluation-Driven AutoML</h3>
+              <p class="muted">AutoML where evaluation decides which features survive and which models ship, with a vision-language model as the final judge.</p>
+              <ul class="chips"><li>XGBoost</li><li>LightGBM</li><li>Gemini</li><li>scikit-learn</li></ul>
+              <button type="button" class="card-open" aria-haspopup="dialog">Read case study <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="work-card" data-project="curves" data-reveal style="--app:var(--app-coral);--app-ink:var(--app-coral-ink)">
+            <div class="card-bar"><p class="hud-label">Computer vision</p><p class="hud-label faint">04</p></div>
+            <div class="card-visual"><svg class="motif" data-motif="curves" viewBox="0 0 400 225" aria-hidden="true"></svg></div>
+            <div class="card-body">
+              <h3 class="h3">Curve Digitizer</h3>
+              <p class="muted">A production pipeline that turns scanned performance curves into calibrated numeric data, including the intersecting curves off-the-shelf tools fail on.</p>
+              <ul class="chips"><li>SAM</li><li>Gemini</li><li>OpenCV</li><li>FastAPI</li></ul>
+              <button type="button" class="card-open" aria-haspopup="dialog">Read case study <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── 03 ARC ───────────────────────── -->
+    <section id="arc" class="section">
+      <div class="frame">
+        <span class="tick tick-tl" aria-hidden="true"></span><span class="tick tick-tr" aria-hidden="true"></span>
+        <div class="eyebrow"><p class="hud-label"><span class="faint">03</span><span class="slash">/</span>Experience</p><p class="hud-label faint hide-sm">Mechademy · Feb 2020 – present</p></div>
+        <div class="section-head">
+          <h2 class="h2" data-reveal>Four roles, <em>one company,</em> six years.</h2>
+          <p class="lede" data-reveal>From ML engineer to team lead to senior individual contributor at Mechademy, an industrial-AI company focused on turbomachinery and rotating-equipment health.</p>
+        </div>
+        <ol class="seasons">
+          <li class="season is-current" data-reveal>
+            <div class="season-meta"><p class="hud-label">Role 04</p><p class="hud-label accent">Current</p></div>
+            <div class="season-body">
+              <h3 class="h3">Lead Data Scientist <em>&amp; Advisor, AI/DS Chapter</em></h3>
+              <ul class="bullets">
+                <li>Promoted from team lead to a senior individual-contributor role, owning the architecture of the flagship ML and GenAI platforms.</li>
+                <li>Advise data science teams across the company through the AI/DS Chapter on modelling standards, evaluation practice and platform adoption.</li>
+                <li>Built the company's production agent platform on my own, shipping 13 LLM agents in five weeks.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="season" data-reveal>
+            <div class="season-meta"><p class="hud-label">Role 03</p><p class="hud-label faint">Led a team of 8</p></div>
+            <div class="season-body">
+              <h3 class="h3">Data Science Team Lead</h3>
+              <ul class="bullets">
+                <li>Led a team of 8 data scientists and ML engineers: set technical direction, reviewed architecture and owned delivery of the company's core ML platforms.</li>
+                <li>Designed a GenAI diagnostics system that drafts fault rules, consolidates fault knowledge and generates root-cause analyses for industrial components.</li>
+                <li>Built a fault-to-sensor mapping layer that links sensor behaviour patterns to diagnostic tests, so engineers get traceable, explainable alerts.</li>
+                <li>Created a rapid-prototyping framework that standardises how GenAI pipelines are written, validated, logged and evaluated.</li>
+                <li>Designed adaptive anomaly detection, including real-time dynamic thresholds and self-tuning outlier detection, which cut manual tuning and false alarms.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="season" data-reveal>
+            <div class="season-meta"><p class="hud-label">Role 02</p><p class="hud-label faint">AutoML foundations</p></div>
+            <div class="season-body">
+              <h3 class="h3">Senior Machine Learning Engineer</h3>
+              <ul class="bullets">
+                <li>Built the first AutoML proof of concept on cloud processing jobs, which became the foundation of the ML Lifecycle Loop.</li>
+                <li>Owned the batch ETL and ML inference pipelines feeding live equipment monitoring.</li>
+                <li>Developed deep-learning health monitors (image-based autoencoders, multivariate reconstruction models) and an event engine that groups raw alerts into actionable events.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="season" data-reveal>
+            <div class="season-meta"><p class="hud-label">Role 01</p><p class="hud-label faint">Joined Feb 2020</p></div>
+            <div class="season-body">
+              <h3 class="h3">Machine Learning Engineer</h3>
+              <ul class="bullets">
+                <li>Delivered tabular ML models and EDA insights across many equipment use cases.</li>
+                <li>Introduced MLflow-based experiment tracking to the team.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="season season-prequel" data-reveal>
+            <div class="season-meta"><p class="hud-label">Education</p><p class="hud-label faint">2014 – 2018</p></div>
+            <div class="season-body">
+              <h3 class="h3">B.Tech, Mechanical Engineering</h3>
+              <p class="muted">Maharshi Dayanand University, Rohtak. The engineering grounding behind years of modelling rotating equipment.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── 04 PRINCIPLES ───────────────────────── -->
+    <section id="principles" class="section">
+      <div class="frame">
+        <span class="tick tick-tl" aria-hidden="true"></span><span class="tick tick-tr" aria-hidden="true"></span>
+        <div class="eyebrow"><p class="hud-label"><span class="faint">04</span><span class="slash">/</span>How I work</p><p class="hud-label faint hide-sm">Principles behind the systems</p></div>
+        <div class="section-head">
+          <h2 class="h2" data-reveal>Fix the <em>class</em> of problem, not the instance.</h2>
+        </div>
+        <div class="principles">
+          <div class="principle" data-reveal>
+            <p class="principle-letter">A</p>
+            <h3 class="h3">Every failure becomes a rule</h3>
+            <p class="muted">When something breaks in production, I record the decision that stops it happening again and add a test that enforces it.</p>
+            <ul class="chips"><li>64 ADRs</li><li>3,400+ offline tests</li><li>Cookbook runs in CI</li></ul>
+          </div>
+          <div class="principle" data-reveal>
+            <p class="principle-letter">B</p>
+            <h3 class="h3">Configuration over code</h3>
+            <p class="muted">Durability, tracing, cost metering and access control belong to the platform. Agent authors declare what they need instead of rebuilding it for every agent.</p>
+            <ul class="chips"><li>Auto-retrying steps</li><li>Every token priced</li><li>Granted tools only</li></ul>
+          </div>
+          <div class="principle" data-reveal>
+            <p class="principle-letter">C</p>
+            <h3 class="h3">Evaluation decides</h3>
+            <p class="muted">Features have to earn their place on held-out data, and models have to prove they track live behaviour. A good-looking metric is not enough to ship.</p>
+            <ul class="chips"><li>Dual-gate selection</li><li>VLM as judge</li><li>R² ≥ 0.95 gate</li></ul>
+          </div>
+          <div class="principle" data-reveal>
+            <p class="principle-letter">D</p>
+            <h3 class="h3">Privacy by construction</h3>
+            <p class="muted">Customer identifiers never reach a model or stored state. LLMs reason over masked, generic feature types, not client or facility names.</p>
+            <ul class="chips"><li>De-identification airlock</li><li>Masked feature types</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── 05 SKILLS ───────────────────────── -->
+    <section id="skills" class="section">
+      <div class="frame">
+        <span class="tick tick-tl" aria-hidden="true"></span><span class="tick tick-tr" aria-hidden="true"></span>
+        <div class="eyebrow"><p class="hud-label"><span class="faint">05</span><span class="slash">/</span>Skills</p><p class="hud-label faint hide-sm">Grouped by where I use them</p></div>
+        <div class="section-head">
+          <h2 class="h2" data-reveal>The toolkit, <em>by discipline.</em></h2>
+          <p class="lede" data-reveal>Grouped by discipline. Highlighted tools are the ones my production systems run on.</p>
+        </div>
+        <div class="skill-bands">
+          <div class="band" data-reveal>
+            <p class="hud-label band-title">ML &amp; GenAI</p>
+            <ul class="chips chips-lg">
+              <li class="core">PyTorch</li><li>TensorFlow / Keras</li><li>scikit-learn</li><li class="core">XGBoost</li><li class="core">LightGBM</li><li class="core">AutoML</li><li class="core">Anomaly detection</li><li class="core">Time-series modelling</li><li class="core">LangGraph</li><li class="core">LangChain</li><li class="core">Deep Agents</li><li class="core">LiteLLM</li><li class="core">MCP</li><li class="core">Langfuse</li><li class="core">LLM / VLM evaluation</li><li class="core">SAM</li><li>OpenCV</li>
+            </ul>
+          </div>
+          <div class="band" data-reveal>
+            <p class="hud-label band-title">Platforms &amp; MLOps</p>
+            <ul class="chips chips-lg">
+              <li class="core">Ray / KubeRay</li><li class="core">Temporal</li><li class="core">Dagster</li><li>Dask</li><li class="core">MLflow</li><li>Celery</li><li>Docker</li><li>Kubernetes</li><li class="core">Helm</li><li>AWS EKS</li><li>S3</li><li>SageMaker</li><li class="core">ONNX Runtime</li>
+            </ul>
+          </div>
+          <div class="band" data-reveal>
+            <p class="hud-label band-title">Data &amp; web</p>
+            <ul class="chips chips-lg">
+              <li class="core">Python</li><li>SQL</li><li class="core">Postgres</li><li class="core">TimescaleDB</li><li class="core">Iceberg</li><li>DuckDB</li><li>MongoDB</li><li>Pandas</li><li class="core">Django</li><li>FastAPI</li><li>Next.js</li>
+            </ul>
+          </div>
+          <div class="band" data-reveal>
+            <p class="hud-label band-title">Leadership</p>
+            <ul class="chips chips-lg">
+              <li>System architecture</li><li>Technical roadmapping</li><li>Architecture decision records</li><li>Mentoring</li><li>Cross-functional delivery with domain engineers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── 06 BLOG ───────────────────────── -->
+    <section id="blog" class="section">
+      <div class="frame">
+        <span class="tick tick-tl" aria-hidden="true"></span><span class="tick tick-tr" aria-hidden="true"></span>
+        <div class="eyebrow"><p class="hud-label"><span class="faint">06</span><span class="slash">/</span>Blog</p><p class="hud-label faint hide-sm blog-count">In the works</p></div>
+        <div class="section-head">
+          <h2 class="h2" data-reveal>Notes from <em>production.</em></h2>
+          <p class="lede" data-reveal>Write-ups on what broke, what I changed and why, covering agent platforms, ML lifecycles, evaluation and industrial AI.</p>
+        </div>
+        <!-- Posts are rendered from the POSTS list in script.js. This empty state shows until it has entries. -->
+        <div class="posts" data-reveal>
+          <div class="posts-empty">
+            <p class="posts-empty-mark" aria-hidden="true">✎</p>
+            <p class="h3">First posts are <em>on the way.</em></p>
+            <p class="muted">Deep dives on the systems above are being written. Follow along on LinkedIn to catch them when they land.</p>
+            <a class="btn btn-outline" href="https://linkedin.com/in/shubver" target="_blank" rel="noopener noreferrer">Follow on LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── CONTACT ───────────────────────── -->
+    <section id="contact" class="section closing">
+      <div class="frame">
+        <span class="tick tick-tl" aria-hidden="true"></span><span class="tick tick-tr" aria-hidden="true"></span>
+        <div class="eyebrow"><p class="hud-label"><span class="faint">07</span><span class="slash">/</span>Contact</p><p class="hud-label faint hide-sm">Email is the fastest way to reach me</p></div>
+        <div class="closing-inner">
+          <h2 class="h-xl" data-reveal>Let's build something <em>that ships.</em></h2>
+          <p class="lede" data-reveal>Hiring for applied ML or GenAI leadership, or working on industrial AI that has to hold up in production? I'd like to hear about it.</p>
+          <div class="hero-ctas center" data-reveal>
+            <a class="btn btn-invert btn-lg" href="mailto:shubham.sv.ver@gmail.com">Email me</a>
+            <button type="button" class="btn btn-outline btn-lg copy-email" data-email="shubham.sv.ver@gmail.com">Copy address</button>
+          </div>
+          <p class="hud-label faint closing-note" data-reveal>New Delhi, India <i>·</i> IST (UTC+5:30)</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ───────────────────────── FOOTER ───────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark">SV</span>
+        <p class="muted">Shubham Verma. Production ML &amp; GenAI systems for industrial machines.</p>
+        <a class="footer-mail" href="mailto:shubham.sv.ver@gmail.com">shubham.sv.ver@gmail.com</a>
+      </div>
+      <div class="footer-col">
+        <p class="hud-label faint">Explore</p>
+        <a href="#work">Flagship systems</a><a href="#arc">Experience</a><a href="#principles">How I work</a><a href="#skills">Skills</a><a href="#blog">Blog</a>
+      </div>
+      <div class="footer-col">
+        <p class="hud-label faint">Elsewhere</p>
+        <a href="https://github.com/shubver" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/shubver" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="assets/Shubham_Verma_Resume_2026.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+      </div>
+    </div>
+    <div class="footer-base">
+      <p class="hud-label faint">© <span class="year">2026</span> Shubham Verma</p>
+      <p class="hud-label faint">No trackers, no cookies</p>
+    </div>
+  </footer>
+
+  <!-- ───────────────────────── CASE STUDY DIALOG ───────────────────────── -->
+  <dialog class="case" aria-labelledby="case-title">
+    <div class="case-bar">
+      <p class="hud-label"><span class="faint case-num">01</span><span class="slash">/</span><span class="case-kind">Case study</span></p>
+      <button type="button" class="case-close" aria-label="Close case study">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path stroke="currentColor" stroke-width="1.6" d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <div class="case-scroll" tabindex="-1">
+      <header class="case-hero">
+        <svg class="motif case-motif" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+        <div class="case-hero-text">
+          <p class="hud-label case-tag">Case study</p>
+          <h2 id="case-title" class="h2 case-title"></h2>
+          <p class="hud-label faint case-meta"></p>
+        </div>
+      </header>
+      <div class="case-grid">
+        <div class="case-main">
+          <div class="case-challenge">
+            <p class="hud-label case-accent">The challenge</p>
+            <p class="case-challenge-text"></p>
+          </div>
+          <div class="case-block">
+            <p class="hud-label faint">The bet</p>
+            <p class="case-bet"></p>
+          </div>
+          <div class="case-block case-toolkit-block" hidden>
+            <p class="hud-label faint toolkit-label"></p>
+            <div class="toolkit">
+              <p class="toolkit-intro"></p>
+              <div class="toolkit-cols">
+                <div>
+                  <p class="hud-label faint">Prebuilt units</p>
+                  <ul class="chips toolkit-units"></ul>
+                </div>
+                <div>
+                  <p class="hud-label faint">Handled for every agent</p>
+                  <ul class="toolkit-handles"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="case-block case-layers-block" hidden>
+            <p class="hud-label faint">Architecture</p>
+            <div class="layers"></div>
+          </div>
+          <div class="case-block">
+            <p class="hud-label faint">How it works</p>
+            <ol class="pipeline"></ol>
+          </div>
+        </div>
+        <aside class="case-side">
+          <div class="case-block">
+            <p class="hud-label faint">Performance &amp; impact</p>
+            <ul class="impact"></ul>
+          </div>
+          <div class="case-block">
+            <p class="hud-label faint">Tech stack</p>
+            <ul class="chips case-stack"></ul>
+          </div>
+        </aside>
+      </div>
+      <section class="case-decisions" hidden aria-labelledby="case-decisions-title">
+        <div class="case-decisions-head">
+          <p class="hud-label faint" id="case-decisions-title">Key decisions</p>
+          <p class="hud-label faint hide-sm">Each one recorded with its reasoning</p>
+        </div>
+        <ol class="decisions"></ol>
+      </section>
+    </div>
+  </dialog>
+
+  <div class="toast hud-label" role="status" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
