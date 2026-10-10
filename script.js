@@ -3,7 +3,6 @@
 
   var root = document.documentElement;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var RESUME = 'assets/Shubham_Verma_Resume_2026.pdf';
   var EMAIL = 'shubham.sv.ver@gmail.com';
 
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
@@ -46,7 +45,7 @@
     recruiter: {
       title: 'Lead Data Scientist who builds production AI <em>end to end.</em>',
       bio: "Six years of building AI for industrial asset monitoring. I designed and led the platforms that train, evaluate, deploy and retire thousands of equipment-health models automatically. In 2026 I built the company's agent platform single-handedly and shipped 13 LLM agents in five weeks.",
-      primary: { label: 'Download résumé', href: RESUME },
+      primary: { label: 'See the work', href: '#work' },
       secondary: { label: 'LinkedIn profile', href: 'https://linkedin.com/in/shubver' }
     },
     developer: {
