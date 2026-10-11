@@ -467,48 +467,110 @@
   if (hashCase && CASES[hashCase]) openCase(hashCase, $('.work-card[data-project="' + hashCase + '"] .card-open'));
 
   /* ───────────── Blog ─────────────
-     Add posts here, newest first. While this list is empty the section
-     shows its "on the way" state. Example entry:
-     { title: 'Retries are a platform concern', url: 'https://…',
-       date: '2026-11-02', summary: 'Why agent steps should never own their own retry logic.',
-       tags: ['Temporal', 'Agents'], readTime: '8 min' } */
-  var POSTS = [];
+     Add posts here. While this list is empty the section shows its
+     "on the way" state. Fields:
+       title, url, summary, tags, readTime     (summary/tags/readTime optional)
+       date: 'YYYY-MM-DD'                      shown when a post is not part of a series
+       series + part                           consecutive posts with the same series are
+                                               grouped under one header, labelled "Part N" */
+  var SUBSTACK = 'https://shubver.substack.com';
+  var POSTS = [
+    {
+      series: 'Agents in production', part: 1, date: '2026-10-11',
+      title: 'Harness: The Difference Between an Agent That Works and One That Performs',
+      url: 'https://shubver.substack.com/p/harness-the-difference-between-an',
+      summary: 'An agent that passes the demo nine times in ten fails hundreds of times a day in production. What harness means, and the layers that close that gap.',
+      tags: ['Harness', 'Production agents'], readTime: '11 min'
+    },
+    {
+      series: 'Agents in production', part: 2, date: '2026-10-11',
+      title: 'Context Is the Real Battleground: Memory as Agent Harness',
+      url: 'https://shubver.substack.com/p/context-is-the-real-battleground',
+      summary: 'A model only knows what is in its window. Four ways context fails, and four ways to manage memory: evict, offload, summarise and let it evolve.',
+      tags: ['Context', 'Memory'], readTime: '5 min'
+    },
+    {
+      series: 'Agents in production', part: 3, date: '2026-10-11',
+      title: 'Deep Agents: Where Harness Stops Being Optional',
+      url: 'https://shubver.substack.com/p/deep-agents-where-harness-stops-being',
+      summary: 'A deep agent is an exploding tree of sub-agents. The harness it needs: isolated contexts, short structured results, tree limits, budgets and deadlock prevention.',
+      tags: ['Deep agents', 'Multi-agent'], readTime: '6 min'
+    }
+  ];
+
+  function fmtDate(iso, opts) {
+    return new Date(iso + 'T00:00:00').toLocaleDateString('en-GB', opts || { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function postCard(p) {
+    var a = document.createElement('a');
+    a.className = 'post';
+    a.href = p.url;
+    if (/^https?:/.test(p.url)) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+
+    var meta = document.createElement('div');
+    meta.className = 'post-meta hud-label';
+    var left = document.createElement('span');
+    left.textContent = p.series ? 'Part ' + String(p.part).padStart(2, '0') : (p.date ? fmtDate(p.date) : '');
+    var rt = document.createElement('span');
+    rt.className = 'faint';
+    rt.textContent = p.readTime ? p.readTime + ' read' : '';
+    meta.appendChild(left); meta.appendChild(rt);
+
+    var h = document.createElement('h3'); h.className = 'h3'; h.textContent = p.title;
+    a.appendChild(meta); a.appendChild(h);
+    if (p.summary) { var s = document.createElement('p'); s.className = 'muted'; s.textContent = p.summary; a.appendChild(s); }
+    if (p.tags && p.tags.length) {
+      var ul = document.createElement('ul'); ul.className = 'chips';
+      p.tags.forEach(function (t) { var li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
+      a.appendChild(ul);
+    }
+    var more = document.createElement('span'); more.className = 'post-read';
+    more.innerHTML = 'Read on Substack <span aria-hidden="true">→</span>';
+    a.appendChild(more);
+    return a;
+  }
 
   function renderPosts() {
     var wrap = $('.posts');
     if (!wrap || !POSTS.length) return;
-    var grid = document.createElement('div');
-    grid.className = 'posts-grid';
-    POSTS.forEach(function (p, i) {
-      var a = document.createElement('a');
-      a.className = 'post';
-      a.href = p.url;
-      if (/^https?:/.test(p.url)) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
-
-      var meta = document.createElement('div');
-      meta.className = 'post-meta hud-label';
-      var d = document.createElement('span');
-      d.textContent = p.date ? new Date(p.date + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : String(i + 1).padStart(2, '0');
-      var rt = document.createElement('span');
-      rt.className = 'faint';
-      rt.textContent = p.readTime || '';
-      meta.appendChild(d); meta.appendChild(rt);
-
-      var h = document.createElement('h3'); h.className = 'h3'; h.textContent = p.title;
-      a.appendChild(meta); a.appendChild(h);
-      if (p.summary) { var s = document.createElement('p'); s.className = 'muted'; s.textContent = p.summary; a.appendChild(s); }
-      if (p.tags && p.tags.length) {
-        var ul = document.createElement('ul'); ul.className = 'chips';
-        p.tags.forEach(function (t) { var li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
-        a.appendChild(ul);
-      }
-      var more = document.createElement('span'); more.className = 'post-read';
-      more.innerHTML = 'Read post <span aria-hidden="true">→</span>';
-      a.appendChild(more);
-      grid.appendChild(a);
-    });
     wrap.innerHTML = '';
-    wrap.appendChild(grid);
+
+    // Group consecutive posts that belong to the same series.
+    var groups = [];
+    POSTS.forEach(function (p) {
+      var last = groups[groups.length - 1];
+      if (last && p.series && last.series === p.series) last.posts.push(p);
+      else groups.push({ series: p.series || null, posts: [p] });
+    });
+
+    groups.forEach(function (g) {
+      if (g.series) {
+        var head = document.createElement('div');
+        head.className = 'series-head';
+        var name = document.createElement('p');
+        name.className = 'hud-label';
+        name.innerHTML = '<span class="faint">Series</span><span class="slash">/</span>';
+        name.appendChild(document.createTextNode(g.series));
+        var info = document.createElement('p');
+        info.className = 'hud-label faint';
+        var dated = g.posts.filter(function (p) { return p.date; }).map(function (p) { return p.date; }).sort();
+        info.textContent = g.posts.length + ' parts' + (dated.length ? ' · ' + fmtDate(dated[0], { month: 'short', year: 'numeric' }) : '');
+        head.appendChild(name); head.appendChild(info);
+        wrap.appendChild(head);
+      }
+      var grid = document.createElement('div');
+      grid.className = 'posts-grid';
+      g.posts.forEach(function (p) { grid.appendChild(postCard(p)); });
+      wrap.appendChild(grid);
+    });
+
+    var foot = document.createElement('a');
+    foot.className = 'posts-foot';
+    foot.href = SUBSTACK; foot.target = '_blank'; foot.rel = 'noopener noreferrer';
+    foot.innerHTML = '<span class="hud-label">Subscribe on Substack for the next posts</span><span class="post-read">shubver.substack.com <span aria-hidden="true">→</span></span>';
+    wrap.appendChild(foot);
+
     var count = $('.blog-count');
     if (count) count.textContent = POSTS.length + (POSTS.length === 1 ? ' post' : ' posts');
   }

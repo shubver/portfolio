@@ -382,6 +382,12 @@ p, li { text-wrap: pretty; }
 .post-read { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .14em; font-size: 11px; font-weight: 700; color: var(--accent-ink); }
 .post-read span { display: inline-block; transition: transform .2s var(--ease); }
 .post:hover .post-read span { transform: translateX(4px); }
+.series-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 12px var(--pad); border-bottom: 1px solid var(--line); background: var(--bg-sunken); }
+.series-head .hud-label:first-child { color: var(--ink-strong); }
+.posts-grid + .series-head { border-top: 1px solid var(--line); }
+.posts-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 16px var(--pad); border-top: 1px solid var(--line); color: var(--muted); transition: background-color .2s; }
+.posts-foot:hover { background: var(--bg-raised); color: var(--ink); }
+.posts-foot:hover .post-read span { transform: translateX(4px); }
 .posts-empty {
   display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
   padding: 44px var(--pad) 52px;
